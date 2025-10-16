@@ -6,6 +6,19 @@ import os
 import tempfile
 import torch
 
+
+import streamlit as st
+
+try:
+    from ultralytics import YOLO
+    import torch
+    from PIL import Image
+    import tempfile
+    import os
+except Exception as e:
+    st.error(f"⚠️ Import failed: {e}")
+    st.stop()
+
 # -----------------------------
 # Load model once
 # -----------------------------
@@ -45,3 +58,4 @@ if uploaded_file is not None:
             # Show result
             result_img = results[0].plot()
             st.image(result_img, caption="Detection Result", use_column_width=True)
+
